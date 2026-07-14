@@ -1,4 +1,4 @@
-const CACHE = 'ikl-carpas-v1';
+const CACHE = 'ikl-carpas-v2';
 const ASSETS = [
   '/',
   '/index.html',
