@@ -5,29 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Precio Carpa Camión - IKL</title>
 
-    <!-- ══ PWA META TAGS ══ -->
     <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
 
-    <!-- Android / Chrome -->
     <meta name="theme-color" content="#1b5e20">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32"   href="icons/favicon-32x32.png">
-
-    <!-- iOS / Safari -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Carpas IKL">
-    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-
-    <!-- SEO / descripción -->
     <meta name="description" content="Cotizador oficial de carpas para camión - Carpas IKL S.A.S.">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap');
 
-        /* ══════════════════════════════════════
-           PALETA: Blanco / Verde IKL
-        ══════════════════════════════════════ */
         :root {
             --green-dark:   #1b5e20;
             --green-mid:    #2e7d32;
@@ -63,7 +53,6 @@
             margin: 0 auto;
         }
 
-        /* ── HEADER ── */
         header {
             text-align: center;
             margin-bottom: 22px;
@@ -98,7 +87,6 @@
             margin-top: 5px;
         }
 
-        /* ── CARDS ── */
         .card {
             background: var(--card);
             border-radius: var(--radius);
@@ -129,7 +117,6 @@
             background: linear-gradient(90deg, var(--border-mid), transparent);
         }
 
-        /* ── INPUTS ── */
         .form-group { margin-bottom: 13px; }
         label.field-label {
             display: block;
@@ -153,6 +140,9 @@
             transition: border-color 0.2s, box-shadow 0.2s;
             -webkit-appearance: none;
         }
+
+        #cliente { text-transform: uppercase; font-weight: 700; }
+
         input[type="number"]:focus,
         input[type="text"]:focus {
             outline: none;
@@ -161,9 +151,8 @@
             background: #fff;
         }
         input[type="number"]::placeholder,
-        input[type="text"]::placeholder { color: #b0c8b0; }
+        input[type="text"]::placeholder { color: #b0c8b0; font-weight: 400; }
 
-        /* ── SELECTOR LONA ── */
         .lona-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -186,10 +175,7 @@
             user-select: none;
             min-height: 90px;
         }
-        .lona-label:hover {
-            border-color: var(--green-main);
-            background: var(--green-pale);
-        }
+        .lona-label:hover { border-color: var(--green-main); background: var(--green-pale); }
         .lona-option input:checked + .lona-label {
             border-color: var(--green-main);
             background: var(--green-pale);
@@ -217,7 +203,6 @@
             border-color: var(--green-main);
         }
 
-        /* ── HINT DESCUENTO ── */
         .dcto-hint {
             font-size: 0.75em; color: var(--muted);
             margin-top: 5px; padding-left: 2px;
@@ -225,7 +210,6 @@
         }
         .dcto-hint.warn { color: var(--red); font-weight: 600; }
 
-        /* ── ADICIONALES ── */
         .item-adicional {
             border-radius: 9px;
             background: var(--card2);
@@ -269,9 +253,7 @@
             from { opacity: 0; transform: translateY(-5px); }
             to   { opacity: 1; transform: translateY(0); }
         }
-        .input-oculto label.field-label { margin-top: 2px; }
 
-        /* ── BOTONES ── */
         .btn {
             width: 100%; padding: 15px;
             border: none; border-radius: 11px;
@@ -290,300 +272,108 @@
         }
         .btn-calc:hover { box-shadow: 0 6px 24px rgba(27,94,32,0.45); transform: translateY(-1px); }
 
-        .btn-reset {
-            background: transparent; color: var(--muted);
-            border: 1.5px solid var(--border);
-        }
+        .btn-reset { background: transparent; color: var(--muted); border: 1.5px solid var(--border); }
         .btn-reset:hover { color: var(--red); border-color: var(--red); background: var(--red-pale); }
 
-        .btn-back {
-            background: var(--card2); color: var(--text-mid);
-            border: 1.5px solid var(--border);
-        }
+        .btn-back { background: var(--card2); color: var(--text-mid); border: 1.5px solid var(--border); }
         .btn-back:hover { border-color: var(--green-main); color: var(--green-mid); }
 
-        .btn-captura {
-            background: var(--green-dark);
-            color: #fff;
-            box-shadow: 0 4px 14px rgba(27,94,32,0.25);
-        }
+        .btn-captura { background: var(--green-dark); color: #fff; box-shadow: 0 4px 14px rgba(27,94,32,0.25); }
         .btn-captura:hover { background: var(--green-mid); box-shadow: 0 6px 20px rgba(27,94,32,0.35); transform: translateY(-1px); }
 
-        /* ── MODAL IMAGEN ── */
         .img-modal-overlay {
-            display: none;
-            position: fixed; inset: 0; z-index: 1000;
-            background: rgba(0,0,0,0.72);
-            align-items: flex-start; justify-content: center;
-            padding: 16px;
-            overflow-y: auto;
+            display: none; position: fixed; inset: 0; z-index: 1000;
+            background: rgba(0,0,0,0.72); align-items: flex-start; justify-content: center;
+            padding: 16px; overflow-y: auto;
         }
         .img-modal-overlay.active { display: flex; animation: fadeIn 0.2s ease; }
         .img-modal {
-            background: #fff; border-radius: 14px;
-            padding: 20px; max-width: 420px; width: 100%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            text-align: center;
-            margin: auto;
+            background: #fff; border-radius: 14px; padding: 20px; max-width: 420px; width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4); text-align: center; margin: auto;
         }
         .img-modal-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.2em; letter-spacing: 2px;
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.2em; letter-spacing: 2px;
             color: var(--green-dark); margin-bottom: 14px;
         }
         .img-modal img {
-            width: 100%; border-radius: 8px;
-            border: 1px solid var(--border);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-            display: block; margin-bottom: 14px;
-            /* Limitar altura en pantalla para que los botones siempre sean visibles */
-            max-height: 55vh;
-            object-fit: contain;
+            width: 100%; border-radius: 8px; border: 1px solid var(--border);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12); display: block; margin-bottom: 14px;
+            max-height: 55vh; object-fit: contain;
         }
-        .img-modal-hint {
-            font-size: 0.78em; color: var(--muted);
-            margin-bottom: 14px; line-height: 1.5;
-        }
+        .img-modal-hint { font-size: 0.78em; color: var(--muted); margin-bottom: 14px; line-height: 1.5; }
         .img-modal-btns { display: flex; gap: 10px; }
         .img-modal-btns .btn { margin-bottom: 0; flex: 1; padding: 12px; font-size: 1em; }
-        .btn-download {
-            background: var(--green-dark); color: #fff;
-        }
-        .btn-download:hover { background: var(--green-mid); }
-        .btn-close-modal {
-            background: var(--card2); color: var(--text-mid);
-            border: 1.5px solid var(--border);
-        }
-        .btn-close-modal:hover { border-color: var(--red); color: var(--red); }
+        .btn-download { background: var(--green-dark); color: #fff; }
+        .btn-close-modal { background: var(--card2); color: var(--text-mid); border: 1.5px solid var(--border); }
 
-        /* Spinner de carga */
         .spinner-overlay {
             display: none; position: fixed; inset: 0; z-index: 999;
-            background: rgba(255,255,255,0.8);
-            align-items: center; justify-content: center; flex-direction: column; gap: 14px;
+            background: rgba(255,255,255,0.8); align-items: center; justify-content: center;
+            flex-direction: column; gap: 14px;
         }
         .spinner-overlay.active { display: flex; }
         .spinner {
             width: 44px; height: 44px; border-radius: 50%;
-            border: 4px solid var(--border);
-            border-top-color: var(--green-main);
+            border: 4px solid var(--border); border-top-color: var(--green-main);
             animation: spin 0.8s linear infinite;
         }
         .spinner-text { font-size: 0.9em; color: var(--green-dark); font-weight: 600; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        .btn-whatsapp {
-            background: #25d366;
-            color: #fff;
-            box-shadow: 0 4px 14px rgba(37,211,102,0.3);
-        }
-        .btn-whatsapp:hover { background: #1da851; box-shadow: 0 6px 20px rgba(37,211,102,0.45); transform: translateY(-1px); }
+        .btn-whatsapp { background: #25d366; color: #fff; box-shadow: 0 4px 14px rgba(37,211,102,0.3); }
 
-        /* ── RESULTADO ── */
         .result-card {
-            background: var(--card);
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            padding: 20px;
-            margin-bottom: 14px;
+            background: var(--card); border-radius: var(--radius);
+            border: 1px solid var(--border); padding: 20px; margin-bottom: 14px;
             box-shadow: 0 2px 8px rgba(27,94,32,0.06);
         }
-
         .specs-container { margin-bottom: 18px; }
         .spec-tag {
-            display: inline-block;
-            background: var(--green-pale);
-            border: 1px solid var(--green-light);
-            color: var(--green-dark);
-            font-size: 0.8em; padding: 4px 10px;
+            display: inline-block; background: var(--green-pale); border: 1px solid var(--green-light);
+            color: var(--green-dark); font-size: 0.8em; padding: 4px 10px;
             border-radius: 20px; margin: 3px; font-weight: 500;
         }
-
         .divider { height: 1px; background: var(--border); margin: 13px 0; }
-
         .price-row {
-            display: flex; justify-content: space-between;
-            align-items: center; padding: 6px 0;
-            font-size: 0.94em; color: var(--text-mid);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 6px 0; font-size: 0.94em; color: var(--text-mid);
             border-bottom: 1px solid var(--green-xpale);
         }
-        .price-row:last-of-type { border-bottom: none; }
         .price-row.dcto { color: var(--red); }
         .price-row span:last-child { font-weight: 600; }
 
         .total-block {
             background: linear-gradient(135deg, var(--green-dark), var(--green-main));
-            border-radius: 11px;
-            padding: 16px 20px;
+            border-radius: 11px; padding: 16px 20px;
             display: flex; justify-content: space-between; align-items: center;
-            margin-top: 14px;
-            box-shadow: 0 4px 16px rgba(27,94,32,0.25);
+            margin-top: 14px; box-shadow: 0 4px 16px rgba(27,94,32,0.25);
         }
-        .total-label {
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 2px; font-size: 1em; color: rgba(255,255,255,0.85);
-        }
-        .total-amount {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2em; letter-spacing: 1px; color: #fff;
-        }
+        .total-label { font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; font-size: 1em; color: rgba(255,255,255,0.85); }
+        .total-amount { font-family: 'Bebas Neue', sans-serif; font-size: 2em; letter-spacing: 1px; color: #fff; }
 
-        /* ── PAGO ── */
         .payment-card {
-            background: var(--green-pale);
-            border: 1.5px solid var(--border-mid);
-            border-radius: var(--radius);
-            padding: 18px 20px;
-            margin-bottom: 14px;
+            background: var(--green-pale); border: 1.5px solid var(--border-mid);
+            border-radius: var(--radius); padding: 18px 20px; margin-bottom: 14px;
         }
-        .payment-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1em; letter-spacing: 2.5px;
-            color: var(--green-dark); margin-bottom: 12px;
-        }
+        .payment-title { font-family: 'Bebas Neue', sans-serif; font-size: 1em; letter-spacing: 2.5px; color: var(--green-dark); margin-bottom: 12px; }
         .payment-name { font-weight: 700; font-size: 0.95em; color: var(--text); margin-bottom: 8px; }
         .payment-detail { font-size: 0.83em; color: var(--text-mid); line-height: 1.9; }
         .payment-highlight { color: var(--green-dark); font-weight: 700; }
 
-        /* ── TOAST ── */
         .toast {
-            position: fixed; top: 16px; left: 50%;
-            transform: translateX(-50%) translateY(-100px);
-            background: var(--red); color: white;
-            padding: 11px 20px; border-radius: 9px;
-            font-weight: 600; font-size: 0.87em;
-            z-index: 9999;
-            transition: transform 0.28s cubic-bezier(.4,0,.2,1);
-            text-align: center; max-width: 340px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            position: fixed; top: 16px; left: 50%; transform: translateX(-50%) translateY(-100px);
+            background: var(--red); color: white; padding: 11px 20px; border-radius: 9px;
+            font-weight: 600; font-size: 0.87em; z-index: 9999; transition: transform 0.28s cubic-bezier(.4,0,.2,1);
+            text-align: center; max-width: 340px; box-shadow: 0 6px 20px rgba(0,0,0,0.2);
         }
         .toast.show { transform: translateX(-50%) translateY(0); }
-
         .screen { animation: fadeIn 0.28s ease; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ── PRINT AREA (oculta en pantalla) ── */
-        #print-area { display: none; }
-
-        /* ══════════════════════════════════════
-           ESTILOS PDF / IMPRESIÓN
-        ══════════════════════════════════════ */
-        @media print {
-            @page {
-                size: letter portrait;
-                margin: 12mm 16mm 12mm 16mm;
-            }
-
-            * {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-
-            body { background: #fff !important; padding: 0 !important; margin: 0 !important; }
-            body::before, body::after { display: none !important; }
-            .container { display: none !important; }
-            .toast { display: none !important; }
-
-            #print-area {
-                display: block !important;
-                visibility: visible !important;
-                position: static !important;
-                font-family: Arial, sans-serif;
-                font-size: 8.5pt;
-                color: #111;
-                background: #fff;
-                width: 100%;
-            }
-
-            /* Encabezado */
-            .pdf-header {
-                display: flex; align-items: center;
-                justify-content: space-between;
-                padding: 10px 14px 10px;
-                margin-bottom: 10px;
-                background: #1b5e20;
-                border-radius: 7px;
-            }
-            .pdf-company {
-                font-size: 16pt; font-weight: 800;
-                color: #fff; letter-spacing: 1px;
-                text-transform: uppercase; line-height: 1.1;
-            }
-            .pdf-subtitle {
-                font-size: 7pt; color: rgba(255,255,255,0.75);
-                letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px;
-            }
-            .pdf-doc-info { text-align: right; font-size: 7.5pt; color: rgba(255,255,255,0.85); line-height: 1.6; }
-            .pdf-doc-info strong { color: #a5d6a7; font-size: 8.5pt; display: block; }
-
-            /* Dos columnas */
-            .pdf-body { display: flex; gap: 12px; margin-top: 0; }
-            .pdf-col-left { flex: 1.1; }
-            .pdf-col-right { flex: 0.9; }
-
-            .pdf-section-title {
-                font-size: 7.5pt; font-weight: 700; color: #1b5e20;
-                text-transform: uppercase; letter-spacing: 1.2px;
-                border-bottom: 1.5px solid #a5d6a7;
-                padding-bottom: 3px; margin: 9px 0 6px;
-            }
-
-            /* Specs */
-            .pdf-specs-list { display: flex; flex-wrap: wrap; gap: 4px; }
-            .pdf-spec-item {
-                background: #e8f5e9; border: 1px solid #a5d6a7; color: #1b5e20;
-                font-size: 7pt; padding: 2px 7px; border-radius: 20px; font-weight: 600;
-            }
-
-            /* Tabla precios */
-            .pdf-price-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
-            .pdf-price-table tr { border-bottom: 1px solid #e8f5e9; }
-            .pdf-price-table td { padding: 4px 4px; color: #333; font-size: 8.5pt; }
-            .pdf-price-table td:last-child { text-align: right; font-weight: 700; }
-            .pdf-price-table .row-dcto td { color: #c62828; }
-
-            /* Total */
-            .pdf-total-row {
-                padding: 9px 12px; background: #1b5e20;
-                border-radius: 6px; margin-top: 7px;
-                display: flex; justify-content: space-between; align-items: center;
-            }
-            .pdf-total-label { font-size: 9pt; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
-            .pdf-total-amount { font-size: 14pt; font-weight: 800; color: #a5d6a7; }
-
-            /* Pago */
-            .pdf-payment-box {
-                border: 1.5px solid #a5d6a7; border-radius: 6px;
-                padding: 8px 10px; background: #f1f8e9;
-            }
-            .pdf-payment-title {
-                font-size: 7.5pt; font-weight: 700; color: #1b5e20;
-                text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;
-            }
-            .pdf-payment-row {
-                font-size: 8pt; color: #333; padding: 2px 0;
-                border-bottom: 1px solid #e8f5e9;
-                display: flex; justify-content: space-between;
-            }
-            .pdf-payment-row:last-child { border-bottom: none; }
-            .pdf-payment-row span { color: #1b5e20; font-weight: 700; }
-
-            /* Footer */
-            .pdf-footer {
-                margin-top: 10px; border-top: 1px solid #c8e6c9;
-                padding-top: 5px; font-size: 6.5pt;
-                color: #888; text-align: center;
-            }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
 <div class="container">
-
     <header>
         <span class="header-icon">🚛</span>
         <h1>Precio Carpa Camión</h1>
@@ -592,19 +382,16 @@
 
     <div class="toast" id="toast"></div>
 
-    <!-- ══ PANTALLA ENTRADA ══ -->
     <div id="pantalla-entrada" class="screen">
-
         <div class="card">
             <div class="card-title">Información del Cliente</div>
-
             <div class="form-group">
                 <label class="field-label">Cliente</label>
-                <input type="text" id="cliente" placeholder="Nombre del cliente (opcional)">
+                <input type="text" id="cliente" placeholder="Nombre del cliente (opcional)" oninput="this.value = this.value.toUpperCase()">
             </div>
             <div class="form-group">
-                <label class="field-label">Nit/Cédula</label>
-                <input type="text" id="nit-cliente" placeholder="Ej: 900.123.456-7 (opcional)">
+                <label class="field-label">Observaciones</label>
+                <input type="text" id="observaciones" placeholder="Ej: Notas adicionales u observaciones (opcional)">
             </div>
             <div class="form-group">
                 <label class="field-label">Placa Vehículo/Trailer</label>
@@ -614,16 +401,21 @@
 
         <div class="card">
             <div class="card-title">Información Básica</div>
-
+            <div class="item-adicional" style="margin-bottom: 13px;">
+                <label class="check-row">
+                    <input type="checkbox" class="check-cb" id="instalacion-switch" onchange="actualizarLimDcto()">
+                    <span class="custom-cb"></span>
+                    <span class="check-label-text">Lleva Instalación</span>
+                </label>
+            </div>
             <div class="form-group">
                 <label class="field-label">Largo del Vehículo (mts)</label>
-                <input type="number" id="largo" step="0.01" placeholder="Ej: 6.00">
+                <input type="number" id="largo" step="0.01" placeholder="Ej: 6.00" oninput="actualizarLimDcto()">
             </div>
             <div class="form-group">
                 <label class="field-label">Contorno (m)</label>
                 <input type="number" id="contorno" step="0.01" value="7.20">
             </div>
-
             <div class="form-group">
                 <label class="field-label">Tipo de Lona</label>
                 <div class="lona-selector">
@@ -632,7 +424,7 @@
                         <label class="lona-label" for="lona-500k">
                             <span class="lona-name">500 K</span>
                             <span class="lona-sublabel">Lona estándar</span>
-                            <span class="lona-dcto-badge">Dcto. máx. 20%</span>
+                            <span class="lona-dcto-badge" id="badge-500k">Dcto. máx. 0%</span>
                         </label>
                     </div>
                     <div class="lona-option">
@@ -640,16 +432,15 @@
                         <label class="lona-label" for="lona-liviana">
                             <span class="lona-name">500 Liviana</span>
                             <span class="lona-sublabel">Lona liviana</span>
-                            <span class="lona-dcto-badge">Dcto. máx. 30%</span>
+                            <span class="lona-dcto-badge" id="badge-liviana">Dcto. máx. 10%</span>
                         </label>
                     </div>
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="field-label">Descuento (%)</label>
                 <input type="number" id="descuento" step="0.1" placeholder="0.0" oninput="validarDcto(this)">
-                <div class="dcto-hint" id="dcto-hint">Descuento máximo permitido: <strong id="dcto-max-label">20%</strong></div>
+                <div class="dcto-hint" id="dcto-hint">Descuento máximo permitido: <strong id="dcto-max-label">0%</strong></div>
             </div>
         </div>
 
@@ -674,64 +465,43 @@
         <button class="btn btn-reset" onclick="resetForm()">↺ Resetear Formulario</button>
     </div>
 
-    <!-- ══ PANTALLA RESULTADO ══ -->
     <div id="pantalla-resultado" style="display:none;" class="screen">
-    <div id="capture-target">
-
-        <div class="result-card">
-            <div class="card-title">Especificaciones</div>
-            <div class="specs-container" id="res-especificaciones"></div>
-
-            <div class="divider"></div>
-
-            <div class="price-row">
-                <span>Valor Bruto</span>
-                <span id="res-bruto"></span>
+        <div id="capture-target">
+            <div class="result-card">
+                <div class="card-title">Especificaciones</div>
+                <div class="specs-container" id="res-especificaciones"></div>
+                <div class="divider"></div>
+                <div class="price-row"><span>Valor Bruto</span><span id="res-bruto"></span></div>
+                <div class="price-row dcto" id="row-dcto" style="display:none;"><span>Descuento aplicado</span><span id="res-dcto"></span></div>
+                <div class="price-row"><span>Sub Total</span><span id="res-subtotal"></span></div>
+                <div class="price-row"><span>IVA (19%)</span><span id="res-iva"></span></div>
+                <div class="total-block">
+                    <div class="total-label">Total a Pagar</div>
+                    <div class="total-amount" id="res-total"></div>
+                </div>
             </div>
-            <div class="price-row dcto" id="row-dcto" style="display:none;">
-                <span>Descuento aplicado</span>
-                <span id="res-dcto"></span>
-            </div>
-            <div class="price-row">
-                <span>Sub Total</span>
-                <span id="res-subtotal"></span>
-            </div>
-            <div class="price-row">
-                <span>IVA (19%)</span>
-                <span id="res-iva"></span>
-            </div>
-
-            <div class="total-block">
-                <div class="total-label">Total a Pagar</div>
-                <div class="total-amount" id="res-total"></div>
+            <div class="payment-card">
+                <div class="payment-title">Datos de Pago</div>
+                <div class="payment-name">CARPAS IKL S.A.S.</div>
+                <div class="payment-detail">
+                    NIT: <span class="payment-highlight">890 912 508</span><br>
+                    BANCOLOMBIA<br>Cta. Corriente<br>
+                    <span class="payment-highlight">016 912508 01</span><br>
+                    Código Convenio: <span class="payment-highlight">4194</span>
+                </div>
             </div>
         </div>
-
-        <div class="payment-card">
-            <div class="payment-title">Datos de Pago</div>
-            <div class="payment-name">CARPAS IKL S.A.S.</div>
-            <div class="payment-detail">
-                NIT: <span class="payment-highlight">890 912 508</span><br>
-                BANCOLOMBIA<br>Cta. Corriente<br>
-                <span class="payment-highlight">016 912508 01</span><br>
-                Código Convenio: <span class="payment-highlight">4194</span>
-        </div>
-
-    </div><!-- /capture-target -->
         <button class="btn btn-captura" onclick="capturarImagen()">📸 Capturar Imagen</button>
         <button class="btn btn-whatsapp" onclick="compartirWhatsApp()">📲 Compartir por WhatsApp</button>
         <button class="btn btn-back" onclick="volver()">← Volver al Formulario</button>
     </div>
-
 </div>
 
-<!-- SPINNER -->
 <div class="spinner-overlay" id="spinner-overlay">
     <div class="spinner"></div>
     <div class="spinner-text">Generando imagen...</div>
 </div>
 
-<!-- MODAL DE IMAGEN -->
 <div class="img-modal-overlay" id="img-modal">
     <div class="img-modal">
         <div class="img-modal-title">📸 Imagen Lista</div>
@@ -744,117 +514,82 @@
     </div>
 </div>
 
-<!-- ÁREA DE IMPRESIÓN — fuera del .container, directamente en body -->
-<div id="print-area"></div>
-
 <script>
-    // ── DATOS ──
     const lengths = [1.95,2.00,2.20,2.50,2.80,3.00,3.20,3.50,3.80,4.00,4.20,4.50,4.60,4.80,5.00,5.50,5.80,6.00,6.20,6.50,6.70,7.00,7.20,7.50,8.00,8.50,9.00,9.50,10.00,10.50,11.00,11.50,12.00,12.50,13.00,13.50];
     const prices  = [911100,943533,1027906,1162884,1315074,1436659,1532436,1656094,1798048,1882854,1977000,2170629,2218868,2315338,2411812,2491624,2627531,2713235,2803674,2847436,2935048,3104161,3192853,3325891,3513504,3814657,4053643,4181778,4298895,4386937,4436433,4606166,4729983,4894792,5059598,5268472];
 
-    const fijosConfig = {
-        'Virgen':          { p: 76000  },
-        'Reflectivo/Stop': { p: 32000  },
-        'Rombos Químicos': { p: 140000 }
+    // Regalo: cantidad de unidades bonificadas antes de empezar a cobrar
+    const fijosConfig = { 
+        'Virgen': { p: 76000, regalo: 1 }, 
+        'Reflectivo/Stop': { p: 32000, regalo: 2 }, 
+        'Rombos Químicos': { p: 140000, regalo: 0 } 
     };
-    const variablesConfig = {
-        'Nombres/Letras': { p: 10000, label: 'Cant. Letras'     },
-        'Impresión':      { p: 48000, label: 'Metros cuadrados' },
-        'Ruanas':         { p: 38000, label: 'Metros cuadrados' },
-        'Transporte':     { p: 1,     label: 'Valor $'          },
-        'Instalación':    { p: 1,     label: 'Valor $'          }
-    };
+    const variablesConfig = { 'Nombres/Letras': { p: 10000, label: 'Cant. Letras' }, 'Impresión': { p: 48000, label: 'Metros cuadrados' }, 'Ruanas': { p: 38000, label: 'Metros cuadrados' }, 'Transporte': { p: 1, label: 'Valor $' } };
 
-    const DCTO_LIMITES = { '500K': 20, '500 Liviana': 30 };
-
-    // Variable global con los datos del último cálculo
     let ultimaLiquidacion = null;
 
-    // ── LONA / DESCUENTO ──
-    function getLonaSeleccionada() {
-        return document.querySelector('input[name="lona"]:checked').value;
-    }
-    function getLimDcto() { return DCTO_LIMITES[getLonaSeleccionada()]; }
-    function actualizarLimDcto() {
-        document.getElementById('dcto-max-label').textContent = getLimDcto() + '%';
-        validarDcto(document.getElementById('descuento'));
-    }
-    function validarDcto(input) {
-        const hint = document.getElementById('dcto-hint');
-        const val = parseFloat(input.value);
-        hint.classList.toggle('warn', !isNaN(val) && val > getLimDcto());
-    }
+    function getLonaSeleccionada() { return document.querySelector('input[name="lona"]:checked').value; }
 
-    // ── TOAST ──
-    function showToast(msg, targetInput) {
-        const t = document.getElementById('toast');
-        t.textContent = msg;
-        t.classList.add('show');
-        const timer = setTimeout(() => t.classList.remove('show'), 3000);
-        if (targetInput) {
-            targetInput.addEventListener('focus', () => {
-                clearTimeout(timer);
-                t.classList.remove('show');
-            }, { once: true });
+    function obtenerLimitesDctoActuales() {
+        const largo = parseFloat(document.getElementById('largo').value) || 0;
+        const conMontaje = document.getElementById('instalacion-switch').checked;
+        if (largo <= 4.99) {
+            return conMontaje ? { '500K': 0, '500 Liviana': 10 } : { '500K': 10, '500 Liviana': 20 };
+        } else {
+            return conMontaje ? { '500K': 10, '500 Liviana': 20 } : { '500K': 20, '500 Liviana': 30 };
         }
     }
 
-    // ── INIT ──
+    function getLimDcto() { return obtenerLimitesDctoActuales()[getLonaSeleccionada()]; }
+
+    function actualizarLimDcto() {
+        const limites = obtenerLimitesDctoActuales();
+        document.getElementById('badge-500k').textContent = `Dcto. máx. ${limites['500K']}%`;
+        document.getElementById('badge-liviana').textContent = `Dcto. máx. ${limites['500 Liviana']}%`;
+        document.getElementById('dcto-max-label').textContent = getLimDcto() + '%';
+        validarDcto(document.getElementById('descuento'));
+    }
+
+    function validarDcto(input) {
+        const val = parseFloat(input.value);
+        document.getElementById('dcto-hint').classList.toggle('warn', !isNaN(val) && val > getLimDcto());
+    }
+
+    function showToast(msg, targetInput) {
+        const t = document.getElementById('toast');
+        t.textContent = msg; t.classList.add('show');
+        const timer = setTimeout(() => t.classList.remove('show'), 3000);
+        if (targetInput) {
+            targetInput.addEventListener('focus', () => { clearTimeout(timer); t.classList.remove('show'); }, { once: true });
+        }
+    }
+
     function init() {
         let fHTML = "";
         for (let k in fijosConfig) {
-            fHTML += `
-            <div class="item-adicional">
-                <label class="check-row">
-                    <input type="checkbox" class="check-cb f-check" data-n="${k}" data-p="${fijosConfig[k].p}" onchange="manejarSeleccion(this)">
-                    <span class="custom-cb"></span>
-                    <span class="check-label-text">${k}</span>
-                </label>
-                <div class="input-oculto">
-                    <label class="field-label">Cantidad:</label>
-                    <input type="number" class="f-cant" data-n="${k}" placeholder="0" min="1">
-                </div>
-            </div>`;
+            fHTML += `<div class="item-adicional"><label class="check-row"><input type="checkbox" class="check-cb f-check" data-n="${k}" data-p="${fijosConfig[k].p}" onchange="manejarSeleccion(this)"><span class="custom-cb"></span><span class="check-label-text">${k}</span></label><div class="input-oculto"><label class="field-label">Cantidad:</label><input type="number" class="f-cant" data-n="${k}" placeholder="0" min="1"></div></div>`;
         }
         document.getElementById('lista-fijos').innerHTML = fHTML;
 
         let vHTML = "";
         for (let k in variablesConfig) {
-            const cfg = variablesConfig[k];
-            vHTML += `
-            <div class="item-adicional">
-                <label class="check-row">
-                    <input type="checkbox" class="check-cb v-check" data-n="${k}" data-p="${cfg.p}" onchange="manejarSeleccion(this)">
-                    <span class="custom-cb"></span>
-                    <span class="check-label-text">${k}</span>
-                </label>
-                <div class="input-oculto">
-                    <label class="field-label">${cfg.label}:</label>
-                    <input type="number" class="v-cant" data-n="${k}" placeholder="0" min="0" step="any">
-                </div>
-            </div>`;
+            vHTML += `<div class="item-adicional"><label class="check-row"><input type="checkbox" class="check-cb v-check" data-n="${k}" data-p="${variablesConfig[k].p}" onchange="manejarSeleccion(this)"><span class="custom-cb"></span><span class="check-label-text">${k}</span></label><div class="input-oculto"><label class="field-label">${variablesConfig[k].label}:</label><input type="number" class="v-cant" data-n="${k}" placeholder="0" min="0" step="any"></div></div>`;
         }
         document.getElementById('lista-variables').innerHTML = vHTML;
+        actualizarLimDcto();
     }
 
     function manejarSeleccion(cb) {
         const panel = cb.parentElement.parentElement.querySelector('.input-oculto');
-        const inp   = panel.querySelector('input');
-        if (cb.checked) {
-            panel.classList.add('visible');
-            setTimeout(() => inp.focus(), 50);
-        } else {
-            panel.classList.remove('visible');
-            inp.value = "";
-        }
+        const inp = panel.querySelector('input');
+        if (cb.checked) { panel.classList.add('visible'); setTimeout(() => inp.focus(), 50); }
+        else { panel.classList.remove('visible'); inp.value = ""; }
     }
 
     function resetForm() {
         document.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
         document.querySelectorAll('.input-oculto').forEach(i => i.classList.remove('visible'));
-        document.querySelectorAll('input[type="number"]').forEach(i => {
-            i.value = i.id === 'contorno' ? "7.20" : "";
-        });
+        document.querySelectorAll('input[type="number"]').forEach(i => { i.value = i.id === 'contorno' ? "7.20" : ""; });
         document.querySelectorAll('input[type="text"]').forEach(i => { i.value = ""; });
         document.getElementById('lona-500k').checked = true;
         actualizarLimDcto();
@@ -863,46 +598,49 @@
 
     function fmt(n) { return "$" + Math.round(n).toLocaleString('es-CO'); }
 
-    // ── CALCULAR ──
     function calcular() {
         const largo = parseFloat(document.getElementById('largo').value);
         if (isNaN(largo) || largo <= 0) {
-            const inp = document.getElementById('largo');
-            showToast("⚠️ Ingrese el largo del vehículo.", inp);
-            inp.focus(); return;
+            const inp = document.getElementById('largo'); showToast("⚠️ Ingrese el largo del vehículo.", inp); inp.focus(); return;
         }
 
-        const cliente = document.getElementById('cliente').value.trim();
-        const nitCliente = document.getElementById('nit-cliente').value.trim();
+        const cliente = document.getElementById('cliente').value.trim().toUpperCase();
+        const observaciones = document.getElementById('observaciones').value.trim();
         const placa = document.getElementById('placa').value.trim().toUpperCase();
+        const conMontaje = document.getElementById('instalacion-switch').checked;
 
         const contorno = parseFloat(document.getElementById('contorno').value) || 7.20;
         const lonaVal  = getLonaSeleccionada();
         const limDcto  = getLimDcto();
-        const dctoPct  = document.getElementById('descuento').value === "" ? 0
-                         : parseFloat(document.getElementById('descuento').value);
+        const dctoPct  = document.getElementById('descuento').value === "" ? 0 : parseFloat(document.getElementById('descuento').value);
 
         if (dctoPct > limDcto) {
-            const inp = document.getElementById('descuento');
-            showToast(`⚠️ El descuento máximo para Lona ${lonaVal} es ${limDcto}%.`, inp);
-            inp.focus(); return;
+            const inp = document.getElementById('descuento'); showToast(`⚠️ El descuento máximo para esta condición es ${limDcto}%.`, inp); inp.focus(); return;
         }
 
         let adicionales = 0;
         let specs = [`Largo: ${largo}m`, `Contorno: ${contorno}m`, `Plastilona IKL® ${lonaVal}`];
-        let errorAdicional = false;
+        if (conMontaje) specs.push("Con Instalación");
 
+        let errorAdicional = false;
         document.querySelectorAll('.f-check:checked').forEach(c => {
             if (errorAdicional) return;
             const n = c.dataset.n;
             const input = document.querySelector(`.f-cant[data-n="${n}"]`);
             const cant = parseFloat(input.value);
-            if (isNaN(cant) || cant <= 0) {
-                showToast(`⚠️ Ingrese la cantidad para "${n}"`, input);
-                input.focus(); errorAdicional = true; return;
+            if (isNaN(cant) || cant <= 0) { showToast(`⚠️ Ingrese la cantidad para "${n}"`, input); input.focus(); errorAdicional = true; return; }
+            
+            const reg = fijosConfig[n] ? fijosConfig[n].regalo : 0;
+            const cobradas = Math.max(0, cant - reg);
+            adicionales += parseFloat(c.dataset.p) * cobradas;
+
+            if (cobradas === 0) {
+                specs.push(`${n} (x${cant} - Incluida)`);
+            } else if (reg > 0) {
+                specs.push(`${n} (x${cant} - ${cobradas} cobrada${cobradas > 1 ? 's' : ''})`);
+            } else {
+                specs.push(`${n} (x${cant})`);
             }
-            adicionales += parseFloat(c.dataset.p) * cant;
-            specs.push(`${n} (x${cant})`);
         });
         if (errorAdicional) return;
 
@@ -911,12 +649,9 @@
             const n = c.dataset.n;
             const input = document.querySelector(`.v-cant[data-n="${n}"]`);
             const val = parseFloat(input.value);
-            if (isNaN(val) || val <= 0) {
-                showToast(`⚠️ Ingrese el valor/cantidad para "${n}"`, input);
-                input.focus(); errorAdicional = true; return;
-            }
+            if (isNaN(val) || val <= 0) { showToast(`⚠️ Ingrese el valor/cantidad para "${n}"`, input); input.focus(); errorAdicional = true; return; }
             adicionales += parseFloat(c.dataset.p) * val;
-            if (n === 'Transporte' || n === 'Instalación') specs.push(`Servicio de ${n}`);
+            if (n === 'Transporte') specs.push(`Servicio de ${n}`);
             else if (n === 'Nombres/Letras') specs.push(`${n}: ${val} letras`);
             else specs.push(`${n}: ${val} m²`);
         });
@@ -928,8 +663,7 @@
 
         if (document.getElementById('estoperoles').checked) {
             const cost = largo <= 4.0 ? 180000 : (largo <= 7.5 ? 220000 : 250000);
-            adicionales += cost;
-            specs.push(`Instalación de Estoperoles`);
+            adicionales += cost; specs.push(`Instalación de Estoperoles`);
         }
 
         const totalIva   = (pBase * (1 - dctoPct / 100) + adicionales) * 1.19;
@@ -939,12 +673,9 @@
         const valDcto    = (subFinal * (dctoPct / 100)) / (1 - dctoPct / 100) || 0;
         const bruto      = subFinal + valDcto;
 
-        // Guardar datos para PDF/WhatsApp
-        ultimaLiquidacion = { specs, bruto, valDcto, dctoPct, subFinal, iva, redondeado, cliente, nit: nitCliente, placa };
+        ultimaLiquidacion = { specs, bruto, valDcto, dctoPct, subFinal, iva, redondeado, cliente, observaciones, placa };
 
-        // Render pantalla resultado
-        document.getElementById('res-especificaciones').innerHTML =
-            specs.map(s => `<span class="spec-tag">${s}</span>`).join('');
+        document.getElementById('res-especificaciones').innerHTML = specs.map(s => `<span class="spec-tag">${s}</span>`).join('');
         document.getElementById('res-bruto').innerText = fmt(bruto);
         if (dctoPct > 0) {
             document.getElementById('row-dcto').style.display = 'flex';
@@ -958,10 +689,8 @@
 
         document.getElementById('pantalla-entrada').style.display = 'none';
         const res = document.getElementById('pantalla-resultado');
-        res.style.display = 'block';
-        res.classList.remove('screen');
-        void res.offsetWidth;
-        res.classList.add('screen');
+        res.style.display = 'block'; res.classList.remove('screen');
+        void res.offsetWidth; res.classList.add('screen');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -971,69 +700,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ── CONSTRUIR HTML DEL PDF ──
-    function buildPrintHTML(d, fecha, hora) {
-        const specTags = d.specs.map(s => `<span class="pdf-spec-item">${s}</span>`).join('');
-        const dctoRow  = d.dctoPct > 0 ? `
-            <tr class="row-dcto">
-                <td>Descuento aplicado</td>
-                <td>- ${fmt(d.valDcto)}</td>
-            </tr>` : '';
-
-        return `
-        <div class="pdf-header">
-            <div class="pdf-logo-block">
-                <div class="pdf-company">Carpas IKL S.A.S.</div>
-                <div class="pdf-subtitle">NIT: 890 912 508 &mdash; Cotizador Oficial</div>
-            </div>
-            <div class="pdf-doc-info">
-                <strong>LIQUIDACI&Oacute;N</strong>
-                ${fecha}<br>${hora}
-            </div>
-        </div>
-
-        <div class="pdf-body">
-            <div class="pdf-col-left">
-                <div class="pdf-section-title">Especificaciones del Producto</div>
-                <div class="pdf-specs-list">${specTags}</div>
-
-                <div class="pdf-section-title">Detalle de Precios</div>
-                <table class="pdf-price-table">
-                    <tr><td>Valor Bruto</td><td>${fmt(d.bruto)}</td></tr>
-                    ${dctoRow}
-                    <tr><td>Sub Total</td><td>${fmt(d.subFinal)}</td></tr>
-                    <tr><td>IVA (19%)</td><td>${fmt(d.iva)}</td></tr>
-                </table>
-
-                <div class="pdf-total-row">
-                    <span class="pdf-total-label">Total a Pagar</span>
-                    <span class="pdf-total-amount">${fmt(d.redondeado)}</span>
-                </div>
-            </div>
-
-            <div class="pdf-col-right">
-                <div class="pdf-section-title">Datos de Pago</div>
-                <div class="pdf-payment-box">
-                    <div class="pdf-payment-title">Informaci&oacute;n Bancaria</div>
-                    <div class="pdf-payment-row"><span>Empresa:</span> Carpas IKL S.A.S.</div>
-                    <div class="pdf-payment-row"><span>NIT:</span> 890 912 508</div>
-                    <div class="pdf-payment-row"><span>Banco:</span> BANCOLOMBIA</div>
-                    <div class="pdf-payment-row"><span>Tipo:</span> Cta. Corriente</div>
-                    <div class="pdf-payment-row"><span>N&uacute;mero:</span> 016 912508 01</div>
-                    <div class="pdf-payment-row"><span>Convenio:</span> 4194</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="pdf-footer">
-            Documento generado el ${fecha} a las ${hora} &mdash; Carpas IKL S.A.S. &mdash; Documento informativo, no constituye factura de venta.
-        </div>`;
-    }
-
-    // ── CAPTURAR IMAGEN ──
     let imagenCapturada = null;
-
-    // ── CAPTURAR IMAGEN — siempre Canvas nativo, funciona offline y en cualquier contexto ──
     function capturarImagen() {
         if (!ultimaLiquidacion) return;
         const spinner = document.getElementById('spinner-overlay');
@@ -1043,8 +710,7 @@
                 const canvas = dibujarImagen(ultimaLiquidacion);
                 mostrarImagen(canvas);
             } catch(e) {
-                spinner.classList.remove('active');
-                alert('Error al generar imagen: ' + e.message);
+                spinner.classList.remove('active'); alert('Error al generar imagen: ' + e.message);
             }
         }, 80);
     }
@@ -1063,370 +729,179 @@
     function descargarImagen() {
         if (!imagenCapturada) return;
         const ts = new Date().toISOString().slice(0, 10);
-        const a  = document.createElement('a');
-        a.href     = imagenCapturada;
-        a.download = `Liquidacion_IKL_${ts}.jpg`;
-        a.click();
+        const a = document.createElement('a');
+        a.href = imagenCapturada; a.download = `Liquidacion_IKL_${ts}.jpg`; a.click();
     }
 
-    function cerrarModal() {
-        document.getElementById('img-modal').classList.remove('active');
-    }
+    function cerrarModal() { document.getElementById('img-modal').classList.remove('active'); }
 
-    // ── DIBUJAR IMAGEN — ancho 1080px, alto dinámico según contenido ──
     function dibujarImagen(d) {
-        const W   = 1080;
-        const PAD = 54;
-        const fmt2 = n => '$' + Math.round(n).toLocaleString('es-CO');
-
-        const now   = new Date();
+        const W = 1080, PAD = 54, fmt2 = n => '$' + Math.round(n).toLocaleString('es-CO');
+        const now = new Date();
         const fecha = now.toLocaleDateString('es-CO', { year:'numeric', month:'long', day:'numeric' });
         const hora  = now.toLocaleTimeString('es-CO', { hour:'2-digit', minute:'2-digit' });
 
         const rows = [
-            { label: 'Valor Bruto',  val: fmt2(d.bruto),    rojo: false },
+            { label: 'Valor Bruto', val: fmt2(d.bruto), rojo: false },
             ...(d.dctoPct > 0 ? [{ label: 'Descuento (' + d.dctoPct + '%)', val: '- ' + fmt2(d.valDcto), rojo: true }] : []),
-            { label: 'Sub Total',    val: fmt2(d.subFinal), rojo: false },
-            { label: 'IVA (19%)',    val: fmt2(d.iva),      rojo: false },
+            { label: 'Sub Total', val: fmt2(d.subFinal), rojo: false },
+            { label: 'IVA (19%)', val: fmt2(d.iva), rojo: false },
         ];
 
-        // ── Medidas — fuentes grandes, padding mínimo (~8px margen por lado) ──
-        const FS_SPEC   = 38;
-        const FS_PRECIO = 38;
-        const FS_VAL    = 42;
-        const FS_PAGO   = 34;
-        const FS_FOOTER = 28;
-        const FS_SEC    = 30;
+        const FS_SPEC = 38, FS_PRECIO = 38, FS_VAL = 42, FS_PAGO = 34, FS_FOOTER = 28, FS_SEC = 30;
+        const HDR = 280, TAG_H = FS_SPEC + 18, TAG_GAP = 6, ROW_H = FS_VAL + 20, TOTAL_H = 64 + FS_VAL + 12, PAGO_ROW = FS_PAGO + 18;
+        const pagoItems = [['Empresa', 'Carpas IKL S.A.S.'],['NIT', '890 912 508'],['Banco', 'BANCOLOMBIA'],['Cuenta', 'Cta. Cte. 016 912508 01'],['Convenio', '4194']];
+        const PAGO_BOX_H = pagoItems.length * PAGO_ROW + 20, FOOTER_H = FS_FOOTER * 3 + 32;
 
-        const HDR       = 280;
-        const TAG_H     = FS_SPEC + 18;
-        const TAG_GAP   = 6;
-        const ROW_H     = FS_VAL  + 20;
-        const TOTAL_H   = 64 + FS_VAL + 12;
-        const PAGO_ROW  = FS_PAGO + 18;
-        const pagoItems = [
-            ['Empresa',  'Carpas IKL S.A.S.'],
-            ['NIT',      '890 912 508'],
-            ['Banco',    'BANCOLOMBIA'],
-            ['Cuenta',   'Cta. Cte. 016 912508 01'],
-            ['Convenio', '4194'],
-        ];
-        const PAGO_BOX_H = pagoItems.length * PAGO_ROW + 20;
-        const FOOTER_H   = FS_FOOTER * 3 + 32;
-
-        // ── Datos del cliente (opcionales) — solo se muestran si al menos uno está diligenciado ──
         const clienteItems = [];
         if (d.cliente) clienteItems.push(['Cliente', d.cliente]);
-        if (d.nit)      clienteItems.push(['Nit', d.nit]);
-        if (d.placa)    clienteItems.push(['Placa Vehículo', d.placa]);
-        const hasCliente     = clienteItems.length > 0;
-        const CLIENTE_ROW    = FS_PAGO + 18;
-        const CLIENTE_BOX_H  = hasCliente ? (clienteItems.length * CLIENTE_ROW + 20) : 0;
+        if (d.observaciones) clienteItems.push(['Observaciones', d.observaciones]);
+        if (d.placa) clienteItems.push(['Placa Vehículo', d.placa]);
+        const hasCliente = clienteItems.length > 0;
+        const CLIENTE_ROW = FS_PAGO + 18;
+        const CLIENTE_BOX_H = hasCliente ? (clienteItems.length * CLIENTE_ROW + 20) : 0;
 
-        // ── Calcular altura total dinámica ──
-        // Largo y Contorno comparten fila → contamos filas reales
-        // specs[0]=Largo, specs[1]=Contorno → 1 fila compartida, resto individuales
-        const specRowCount = d.specs.length >= 2
-            ? 1 + (d.specs.length - 2)          // 1 fila doble + resto individuales
-            : d.specs.length;
+        const specRowCount = d.specs.length >= 2 ? 1 + (d.specs.length - 2) : d.specs.length;
         const specsBlockH = specRowCount * (TAG_H + TAG_GAP) - TAG_GAP;
-        const MM2 = 44; // ~6mm de separación entre secciones
-        const H =
-            HDR + 44
-            + (hasCliente ? (FS_SEC + 14 + CLIENTE_BOX_H + MM2) : 0)  // datos del cliente (si existen)
-            + FS_SEC + 14 + specsBlockH + MM2    // specs + 2mm al siguiente
-            + FS_SEC + 14 + rows.length * ROW_H + 24
-            + TOTAL_H + 44
-            + FS_SEC + 14 + PAGO_BOX_H + 32
-            + MM2 + FOOTER_H;                    // 2mm antes del footer
+        const MM2 = 44; 
+        const H = HDR + 44 + (hasCliente ? (FS_SEC + 14 + CLIENTE_BOX_H + MM2) : 0) + FS_SEC + 14 + specsBlockH + MM2 + FS_SEC + 14 + rows.length * ROW_H + 24 + TOTAL_H + 44 + FS_SEC + 14 + PAGO_BOX_H + 32 + MM2 + FOOTER_H;
 
-        const cv  = document.createElement('canvas');
-        cv.width  = W;
-        cv.height = H;
+        const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
         const ctx = cv.getContext('2d');
-
-        // ── Fondo general ──
-        ctx.fillStyle = '#f4f7f4';
-        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = '#f4f7f4'; ctx.fillRect(0, 0, W, H);
 
         let y = 0;
+        ctx.fillStyle = '#1b5e20'; ctx.fillRect(0, 0, W, HDR);
+        ctx.fillStyle = '#a5d6a7'; ctx.fillRect(0, HDR - 5, W, 5);
 
-        // ════════════════════════════════
-        // CABECERA — 280px
-        // ════════════════════════════════
-        ctx.fillStyle = '#1b5e20';
-        ctx.fillRect(0, 0, W, HDR);
-        ctx.fillStyle = '#a5d6a7';
-        ctx.fillRect(0, HDR - 5, W, 5);
-
-        ctx.font = '72px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText('🚛', W / 2, 90);
-
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 56px Arial';
-        ctx.fillText('PRECIO CARPA CAMIÓN', W / 2, 162);
-
-        ctx.font = '30px Arial';
-        ctx.fillStyle = 'rgba(255,255,255,0.78)';
-        ctx.fillText('CARPAS IKL S.A.S.  ·  NIT: 890 912 508', W / 2, 210);
-
-        ctx.font = 'bold 26px Arial';
-        ctx.fillStyle = '#a5d6a7';
-        ctx.fillText(fecha + '   ' + hora, W / 2, 254);
+        ctx.font = '72px Arial'; ctx.textAlign = 'center'; ctx.fillText('🚛', W / 2, 90);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 56px Arial'; ctx.fillText('PRECIO CARPA CAMIÓN', W / 2, 162);
+        ctx.font = '30px Arial'; ctx.fillStyle = 'rgba(255,255,255,0.78)'; ctx.fillText('CARPAS IKL S.A.S.  ·  NIT: 890 912 508', W / 2, 210);
+        ctx.font = 'bold 26px Arial'; ctx.fillStyle = '#a5d6a7'; ctx.fillText(fecha + '   ' + hora, W / 2, 254);
         ctx.textAlign = 'left';
 
         y = HDR + 44;
-
-        // ════════════════════════════════
-        // DATOS DEL CLIENTE (solo si hay al menos un campo diligenciado)
-        // ════════════════════════════════
         if (hasCliente) {
             y = seccionTitulo(ctx, 'DATOS DEL CLIENTE', PAD, y, W - PAD * 2, FS_SEC, FS_SEC + 14);
-
-            ctx.fillStyle = '#f1f8e9';
-            rrect(ctx, PAD, y, W - PAD * 2, CLIENTE_BOX_H, 16);
-            ctx.strokeStyle = '#a5d6a7';
-            ctx.lineWidth = 2.5;
-            rrectStroke(ctx, PAD, y, W - PAD * 2, CLIENTE_BOX_H, 16);
-
+            ctx.fillStyle = '#f1f8e9'; rrect(ctx, PAD, y, W - PAD * 2, CLIENTE_BOX_H, 16);
+            ctx.strokeStyle = '#a5d6a7'; ctx.lineWidth = 2.5; rrectStroke(ctx, PAD, y, W - PAD * 2, CLIENTE_BOX_H, 16);
             clienteItems.forEach(([k, v], i) => {
                 const cy = y + 20 + i * CLIENTE_ROW;
-                if (i % 2 !== 0) {
-                    ctx.fillStyle = 'rgba(165,214,167,0.15)';
-                    ctx.fillRect(PAD + 2, cy - 8, W - PAD * 2 - 4, CLIENTE_ROW);
-                }
-                ctx.font = 'bold ' + FS_PAGO + 'px Arial';
-                ctx.fillStyle = '#1b5e20';
-                ctx.textAlign = 'left';
+                if (i % 2 !== 0) { ctx.fillStyle = 'rgba(165,214,167,0.15)'; ctx.fillRect(PAD + 2, cy - 8, W - PAD * 2 - 4, CLIENTE_ROW); }
+                ctx.font = 'bold ' + FS_PAGO + 'px Arial'; ctx.fillStyle = '#1b5e20'; ctx.textAlign = 'left';
                 ctx.fillText(k, PAD + 28, cy + CLIENTE_ROW / 2 + FS_PAGO * 0.36);
-                ctx.font = FS_PAGO + 'px Arial';
-                ctx.fillStyle = '#2d4a2d';
-                ctx.textAlign = 'right';
-                ctx.fillText(v, W - PAD - 28, cy + CLIENTE_ROW / 2 + FS_PAGO * 0.36);
-                ctx.textAlign = 'left';
-                if (i < clienteItems.length - 1) {
-                    ctx.strokeStyle = '#c8e6c9';
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(PAD + 16, cy + CLIENTE_ROW - 8); ctx.lineTo(W - PAD - 16, cy + CLIENTE_ROW - 8);
-                    ctx.stroke();
-                }
+                ctx.font = (k === 'Cliente' ? 'bold ' : '') + FS_PAGO + 'px Arial'; ctx.fillStyle = '#2d4a2d'; ctx.textAlign = 'right';
+                ctx.fillText(v, W - PAD - 28, cy + CLIENTE_ROW / 2 + FS_PAGO * 0.36); ctx.textAlign = 'left';
             });
             y += CLIENTE_BOX_H + MM2;
         }
 
-        // ════════════════════════════════
-        // ESPECIFICACIONES — una por fila
-        // ════════════════════════════════
         y = seccionTitulo(ctx, 'ESPECIFICACIONES DEL PRODUCTO', PAD, y, W - PAD * 2, FS_SEC, FS_SEC + 14);
-
-        // Fila 0: Largo + Contorno lado a lado (half width con gap de 8px)
-        // Resto: ancho completo una por fila
-        const HALF_GAP = 8;
-        const HALF_W   = (W - PAD * 2 - HALF_GAP) / 2;
-
+        const HALF_GAP = 8, HALF_W = (W - PAD * 2 - HALF_GAP) / 2;
         let specDrawY = y;
 
         if (d.specs.length >= 2) {
-            // Fila compartida: Largo (izq) | Contorno (der)
-            const rowSpecs = [d.specs[0], d.specs[1]];
-            rowSpecs.forEach((spec, col) => {
+            [d.specs[0], d.specs[1]].forEach((spec, col) => {
                 const bx = PAD + col * (HALF_W + HALF_GAP);
-                ctx.fillStyle = '#e8f5e9';
-                rrect(ctx, bx, specDrawY, HALF_W, TAG_H, 14);
-                ctx.strokeStyle = '#81c784';
-                ctx.lineWidth = 1.8;
-                rrectStroke(ctx, bx, specDrawY, HALF_W, TAG_H, 14);
-                ctx.fillStyle = '#1b5e20';
-                ctx.font = 'bold ' + FS_SPEC + 'px Arial';
-                ctx.textAlign = 'left';
+                ctx.fillStyle = '#e8f5e9'; rrect(ctx, bx, specDrawY, HALF_W, TAG_H, 14);
+                ctx.strokeStyle = '#81c784'; ctx.lineWidth = 1.8; rrectStroke(ctx, bx, specDrawY, HALF_W, TAG_H, 14);
+                ctx.fillStyle = '#1b5e20'; ctx.font = 'bold ' + FS_SPEC + 'px Arial'; ctx.textAlign = 'left';
                 ctx.fillText(spec, bx + 16, specDrawY + TAG_H / 2 + FS_SPEC * 0.36);
             });
             specDrawY += TAG_H + TAG_GAP;
 
-            // Resto: ancho completo, fondo alterno empezando en índice 1 (blanco)
             d.specs.slice(2).forEach((spec, j) => {
-                const rowIdx = j + 1; // para alternancia: fila 0 fue verde, fila 1 blanco...
+                const rowIdx = j + 1;
                 ctx.fillStyle = rowIdx % 2 === 0 ? '#e8f5e9' : '#ffffff';
                 rrect(ctx, PAD, specDrawY, W - PAD * 2, TAG_H, 14);
-                ctx.strokeStyle = '#81c784';
-                ctx.lineWidth = 1.8;
-                rrectStroke(ctx, PAD, specDrawY, W - PAD * 2, TAG_H, 14);
-                ctx.fillStyle = '#1b5e20';
-                ctx.font = 'bold ' + FS_SPEC + 'px Arial';
-                ctx.textAlign = 'left';
+                ctx.strokeStyle = '#81c784'; ctx.lineWidth = 1.8; rrectStroke(ctx, PAD, specDrawY, W - PAD * 2, TAG_H, 14);
+                ctx.fillStyle = '#1b5e20'; ctx.font = 'bold ' + FS_SPEC + 'px Arial'; ctx.textAlign = 'left';
                 ctx.fillText(spec, PAD + 24, specDrawY + TAG_H / 2 + FS_SPEC * 0.36);
                 specDrawY += TAG_H + TAG_GAP;
             });
         } else {
-            // Menos de 2 specs: todas en fila completa
             d.specs.forEach((spec, i) => {
                 ctx.fillStyle = i % 2 === 0 ? '#e8f5e9' : '#ffffff';
                 rrect(ctx, PAD, specDrawY, W - PAD * 2, TAG_H, 14);
-                ctx.strokeStyle = '#81c784';
-                ctx.lineWidth = 1.8;
-                rrectStroke(ctx, PAD, specDrawY, W - PAD * 2, TAG_H, 14);
-                ctx.fillStyle = '#1b5e20';
-                ctx.font = 'bold ' + FS_SPEC + 'px Arial';
-                ctx.textAlign = 'left';
+                ctx.strokeStyle = '#81c784'; ctx.lineWidth = 1.8; rrectStroke(ctx, PAD, specDrawY, W - PAD * 2, TAG_H, 14);
+                ctx.fillStyle = '#1b5e20'; ctx.font = 'bold ' + FS_SPEC + 'px Arial'; ctx.textAlign = 'left';
                 ctx.fillText(spec, PAD + 24, specDrawY + TAG_H / 2 + FS_SPEC * 0.36);
                 specDrawY += TAG_H + TAG_GAP;
             });
         }
         y += specsBlockH + MM2;
 
-        // ════════════════════════════════
-        // DETALLE DE PRECIOS
-        // ════════════════════════════════
         y = seccionTitulo(ctx, 'DETALLE DE PRECIOS', PAD, y, W - PAD * 2, FS_SEC, FS_SEC + 14);
-
         rows.forEach((row, i) => {
             const ry = y + i * ROW_H;
-            ctx.fillStyle = i % 2 === 0 ? '#ffffff' : '#f0f7f0';
-            ctx.fillRect(PAD, ry, W - PAD * 2, ROW_H);
-            ctx.strokeStyle = '#d0e8d0';
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.moveTo(PAD, ry + ROW_H); ctx.lineTo(W - PAD, ry + ROW_H);
-            ctx.stroke();
-            ctx.fillStyle = row.rojo ? '#c62828' : '#4a6a4a';
-            ctx.font = FS_PRECIO + 'px Arial';
-            ctx.textAlign = 'left';
+            ctx.fillStyle = i % 2 === 0 ? '#ffffff' : '#f0f7f0'; ctx.fillRect(PAD, ry, W - PAD * 2, ROW_H);
+            ctx.strokeStyle = '#d0e8d0'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(PAD, ry + ROW_H); ctx.lineTo(W - PAD, ry + ROW_H); ctx.stroke();
+            ctx.fillStyle = row.rojo ? '#c62828' : '#4a6a4a'; ctx.font = FS_PRECIO + 'px Arial'; ctx.textAlign = 'left';
             ctx.fillText(row.label, PAD + 24, ry + ROW_H / 2 + FS_PRECIO * 0.36);
-            ctx.font = 'bold ' + FS_VAL + 'px Arial';
-            ctx.fillStyle = row.rojo ? '#c62828' : '#1a2e1a';
-            ctx.textAlign = 'right';
-            ctx.fillText(row.val, W - PAD - 24, ry + ROW_H / 2 + FS_VAL * 0.36);
-            ctx.textAlign = 'left';
+            ctx.font = 'bold ' + FS_VAL + 'px Arial'; ctx.fillStyle = row.rojo ? '#c62828' : '#1a2e1a'; ctx.textAlign = 'right';
+            ctx.fillText(row.val, W - PAD - 24, ry + ROW_H / 2 + FS_VAL * 0.36); ctx.textAlign = 'left';
         });
         y += rows.length * ROW_H + 28;
 
-        // ════════════════════════════════
-        // BLOQUE TOTAL
-        // ════════════════════════════════
-        ctx.fillStyle = '#1b5e20';
-        rrect(ctx, PAD, y, W - PAD * 2, TOTAL_H, 18);
-        ctx.fillStyle = 'rgba(255,255,255,0.70)';
-        ctx.font = 'bold 30px Arial';
-        ctx.textAlign = 'left';
+        ctx.fillStyle = '#1b5e20'; rrect(ctx, PAD, y, W - PAD * 2, TOTAL_H, 18);
+        ctx.fillStyle = 'rgba(255,255,255,0.70)'; ctx.font = 'bold 30px Arial'; ctx.textAlign = 'left';
         ctx.fillText('TOTAL A PAGAR', PAD + 36, y + 46);
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold ' + FS_VAL + 'px Arial';
-        ctx.textAlign = 'right';
-        ctx.fillText(fmt2(d.redondeado), W - PAD - 36, y + 56 + FS_VAL);
-        ctx.textAlign = 'left';
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold ' + FS_VAL + 'px Arial'; ctx.textAlign = 'right';
+        ctx.fillText(fmt2(d.redondeado), W - PAD - 36, y + 56 + FS_VAL); ctx.textAlign = 'left';
         y += TOTAL_H + 44;
 
-        // ════════════════════════════════
-        // DATOS DE PAGO
-        // ════════════════════════════════
         y = seccionTitulo(ctx, 'DATOS DE PAGO', PAD, y, W - PAD * 2, FS_SEC, FS_SEC + 14);
-
-        ctx.fillStyle = '#f1f8e9';
-        rrect(ctx, PAD, y, W - PAD * 2, PAGO_BOX_H, 16);
-        ctx.strokeStyle = '#a5d6a7';
-        ctx.lineWidth = 2.5;
-        rrectStroke(ctx, PAD, y, W - PAD * 2, PAGO_BOX_H, 16);
+        ctx.fillStyle = '#f1f8e9'; rrect(ctx, PAD, y, W - PAD * 2, PAGO_BOX_H, 16);
+        ctx.strokeStyle = '#a5d6a7'; ctx.lineWidth = 2.5; rrectStroke(ctx, PAD, y, W - PAD * 2, PAGO_BOX_H, 16);
 
         pagoItems.forEach(([k, v], i) => {
             const py = y + 20 + i * PAGO_ROW;
-            if (i % 2 !== 0) {
-                ctx.fillStyle = 'rgba(165,214,167,0.15)';
-                ctx.fillRect(PAD + 2, py - 8, W - PAD * 2 - 4, PAGO_ROW);
-            }
-            ctx.font = 'bold ' + FS_PAGO + 'px Arial';
-            ctx.fillStyle = '#1b5e20';
-            ctx.textAlign = 'left';
+            if (i % 2 !== 0) { ctx.fillStyle = 'rgba(165,214,167,0.15)'; ctx.fillRect(PAD + 2, py - 8, W - PAD * 2 - 4, PAGO_ROW); }
+            ctx.font = 'bold ' + FS_PAGO + 'px Arial'; ctx.fillStyle = '#1b5e20'; ctx.textAlign = 'left';
             ctx.fillText(k, PAD + 28, py + PAGO_ROW / 2 + FS_PAGO * 0.36);
-            ctx.font = FS_PAGO + 'px Arial';
-            ctx.fillStyle = '#2d4a2d';
-            ctx.textAlign = 'right';
-            ctx.fillText(v, W - PAD - 28, py + PAGO_ROW / 2 + FS_PAGO * 0.36);
-            ctx.textAlign = 'left';
-            if (i < pagoItems.length - 1) {
-                ctx.strokeStyle = '#c8e6c9';
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.moveTo(PAD + 16, py + PAGO_ROW - 8); ctx.lineTo(W - PAD - 16, py + PAGO_ROW - 8);
-                ctx.stroke();
-            }
+            ctx.font = FS_PAGO + 'px Arial'; ctx.fillStyle = '#2d4a2d'; ctx.textAlign = 'right';
+            ctx.fillText(v, W - PAD - 28, py + PAGO_ROW / 2 + FS_PAGO * 0.36); ctx.textAlign = 'left';
         });
         y += PAGO_BOX_H + 32 + MM2;
 
-        // ════════════════════════════════
-        // FOOTER
-        // ════════════════════════════════
-        ctx.strokeStyle = '#c8e6c9';
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
-
-        ctx.font = FS_FOOTER + 'px Arial';
-        ctx.fillStyle = '#6a8f6a';
-        ctx.textAlign = 'center';
+        ctx.strokeStyle = '#c8e6c9'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
+        ctx.font = FS_FOOTER + 'px Arial'; ctx.fillStyle = '#6a8f6a'; ctx.textAlign = 'center';
         ctx.fillText('Documento informativo · No constituye factura de venta', W / 2, y + FS_FOOTER + 8);
-
-        ctx.font = 'bold ' + FS_FOOTER + 'px Arial';
-        ctx.fillStyle = '#2e7d32';
+        ctx.font = 'bold ' + FS_FOOTER + 'px Arial'; ctx.fillStyle = '#2e7d32';
         ctx.fillText('Condiciones comerciales:', W / 2, y + FS_FOOTER * 2 + 16);
         ctx.fillText('50% anticipo y 50% previo al despacho', W / 2, y + FS_FOOTER * 3 + 22);
 
         return cv;
     }
 
-    // ── Helpers Canvas ──
     function rrect(ctx, x, y, w, h, r) {
-        ctx.beginPath();
-        ctx.moveTo(x + r, y);
-        ctx.lineTo(x + w - r, y);
-        ctx.arcTo(x + w, y, x + w, y + r, r);
-        ctx.lineTo(x + w, y + h - r);
-        ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
-        ctx.lineTo(x + r, y + h);
-        ctx.arcTo(x, y + h, x, y + h - r, r);
-        ctx.lineTo(x, y + r);
-        ctx.arcTo(x, y, x + r, y, r);
-        ctx.closePath();
-        ctx.fill();
+        ctx.beginPath(); ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y);
+        ctx.arcTo(x + w, y, x + w, y + r, r); ctx.lineTo(x + w, y + h - r);
+        ctx.arcTo(x + w, y + h, x + w - r, y + h, r); ctx.lineTo(x + r, y + h);
+        ctx.arcTo(x, y + h, x, y + h - r, r); ctx.lineTo(x, y + r);
+        ctx.arcTo(x, y, x + r, y, r); ctx.closePath(); ctx.fill();
     }
 
     function rrectStroke(ctx, x, y, w, h, r) {
-        ctx.beginPath();
-        ctx.moveTo(x + r, y);
-        ctx.lineTo(x + w - r, y);
-        ctx.arcTo(x + w, y, x + w, y + r, r);
-        ctx.lineTo(x + w, y + h - r);
-        ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
-        ctx.lineTo(x + r, y + h);
-        ctx.arcTo(x, y + h, x, y + h - r, r);
-        ctx.lineTo(x, y + r);
-        ctx.arcTo(x, y, x + r, y, r);
-        ctx.closePath();
-        ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y);
+        ctx.arcTo(x + w, y, x + w, y + r, r); ctx.lineTo(x + w, y + h - r);
+        ctx.arcTo(x + w, y + h, x + w - r, y + h, r); ctx.lineTo(x + r, y + h);
+        ctx.arcTo(x, y + h, x, y + h - r, r); ctx.lineTo(x, y + r);
+        ctx.arcTo(x, y, x + r, y, r); ctx.closePath(); ctx.stroke();
     }
 
     function seccionTitulo(ctx, texto, x, y, w, fs, gap) {
-        fs  = fs  || 20;
-        gap = gap || 22;
-        ctx.fillStyle = '#2e7d32';
-        ctx.font = 'bold ' + fs + 'px Arial';
-        ctx.textAlign = 'left';
-        ctx.fillText(texto, x, y);
-        ctx.strokeStyle = '#a5d6a7';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(x, y + fs * 0.55);
-        ctx.lineTo(x + w, y + fs * 0.55);
-        ctx.stroke();
+        fs = fs || 20; gap = gap || 22;
+        ctx.fillStyle = '#2e7d32'; ctx.font = 'bold ' + fs + 'px Arial'; ctx.textAlign = 'left';
+        ctx.fillText(texto, x, y); ctx.strokeStyle = '#a5d6a7'; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(x, y + fs * 0.55); ctx.lineTo(x + w, y + fs * 0.55); ctx.stroke();
         return y + gap;
     }
 
-    // ── COMPARTIR POR WHATSAPP ──
     function compartirWhatsApp() {
         if (!ultimaLiquidacion) return;
         const d = ultimaLiquidacion;
-        const now   = new Date();
+        const now = new Date();
         const fecha = now.toLocaleDateString('es-CO', { year:'numeric', month:'long', day:'numeric' });
 
         const lineas = [
@@ -1441,9 +916,7 @@
             `  Valor Bruto: ${fmt(d.bruto)}`,
         ];
 
-        if (d.dctoPct > 0) {
-            lineas.push(`  Descuento (${d.dctoPct}%): - ${fmt(d.valDcto)}`);
-        }
+        if (d.dctoPct > 0) { lineas.push(`  Descuento (${d.dctoPct}%): - ${fmt(d.valDcto)}`); }
 
         lineas.push(
             `  Sub Total: ${fmt(d.subFinal)}`,
@@ -1460,15 +933,12 @@
             '_Documento informativo — no constituye factura._'
         );
 
-        const texto = lineas.join('\n');
-        const url   = 'https://wa.me/?text=' + encodeURIComponent(texto);
-        window.open(url, '_blank');
+        window.open('https://wa.me/?text=' + encodeURIComponent(lineas.join('\n')), '_blank');
     }
 
     init();
 </script>
 
-    <!-- ══ SERVICE WORKER (PWA offline + instalable) ══ -->
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
